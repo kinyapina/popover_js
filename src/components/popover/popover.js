@@ -1,49 +1,48 @@
 import './popover.css';
 
-const popover = document.createElement('div');
-
 export class Popover {
   constructor(element, title, popoverText) {
-    this.element = element;
-    this.title = title;
+    this.button = element;
+    this.popoverTitle = title;
     this.popoverText = popoverText;
-    this.popoverEl = null;
+    this.popover = null;
 
-    this.element.addEventListener('click', (e) => {
+    this.button.addEventListener('click', (e) => {
       e.preventDefault();
-      this.togglePopover();
+      this.togglePopover();      
     });
   }
 
   createPopover() {
-    //const popover = document.createElement('div');
-    popover.classList.add('popover');
-    popover.innerHTML = `
-      <div class='popoverTitle'>${this.title}</div>
+    this.popover = document.createElement('div');
+    this.popover.classList.add('popover');
+    this.popover.innerHTML = `
+      <div class='popoverTitle'>${this.popoverTitle}</div>
       <div class='popoverText'>${this.popoverText}</div>
     `;
   }  
 
-  showPopover() {  
-    //console.log(popover.getBoundingClientRect());
-    const { right, top } = popover.getBoundingClientRect();
+  showPopover() {
+    this.createPopover();
+    document.body.appendChild(this.popover); 
 
-    popover.style.left = right + 5 + 'px';
-    popover.style.top = top + popover.offsetHeight / 2 - popover.offsetHeight / 2 + 'px';
-    
-    document.body.appendChild(popover);
-    this.popoverEl = popover;
+    const { left, top, width } = this.button.getBoundingClientRect();
+    const { height: popoverHeight, width: popoverWidth } = this.popover.getBoundingClientRect();
+    const popoverLocation = left + width / 2;
+
+    this.popover.style.left = popoverLocation - popoverWidth / 2 + 'px';
+    this.popover.style.top = top - popoverHeight - 10 + 'px';
   }
 
   removePopover() {
-    if (this.popoverEl) {
-      this.popoverEl.remove();
-      this.popoverEl = null;
+    if (this.popover) {
+      this.popover.remove();
+      this.popover = null;
     }
   }
 
   togglePopover() {
-    if (this.popoverEl) {
+    if (this.popover) {
       this.removePopover();
     } else {
       this.showPopover();
