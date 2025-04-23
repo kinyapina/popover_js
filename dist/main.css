@@ -1,1 +1,45 @@
+.container {
+  margin: 150px;
+  position: relative;
+}
+.btn-tooltip {
+  background: #e6553b;
+  color: white;
+  font-weight: 700;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.popover {
+  position: absolute;
+  width: 200px;
+  background: #ffffff;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  text-align: center;
+  border-radius: 5px;
+}
 
+.popover:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #ffffff;
+}
+
+.popoverTitle {
+  background: #dedddd;
+  color: rgb(67, 67, 67);
+  padding: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.popoverText {
+  color: rgb(108, 103, 103);
+  padding: 5px;
+}
