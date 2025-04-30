@@ -7,7 +7,7 @@ test('Проверка создания поповера при клике на 
     </div>
   `;
   let button = document.querySelector('button');
-  let popover = new Popover(button, 'Test title', 'Test text');
+  new Popover(button, 'Test title', 'Test text');
 
   button.click();
   
@@ -22,7 +22,7 @@ test('Проверка содержимого поповера', () => {
     </div>
     `;
   let button = document.querySelector('button');
-  let popover = new Popover(button, 'Test title', 'Test text');
+  new Popover(button, 'Test title', 'Test text');
 
   button.click();
   const popoverElement = document.body.querySelector('.popover');
@@ -40,7 +40,7 @@ test('Проверка удаления поповера при повторно
     </div>
     `;
   let button = document.querySelector('button');
-  let popover = new Popover(button, 'Test title', 'Test text');
+  new Popover(button, 'Test title', 'Test text');
 
   button.click();
   button.click();
