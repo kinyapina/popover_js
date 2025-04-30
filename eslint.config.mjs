@@ -5,6 +5,9 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 
 export default [
   {
+    ignores: ["dist/**", "node_modules/**", "coverage/**"], // игнорируемые пути
+  },
+  {
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
   pluginJs.configs.recommended,
@@ -13,9 +16,6 @@ export default [
     rules: {
       "no-unused-vars": "warn",
     },
-  },
-  {
-    ignores: ["dist/*", "node_modules/**", "coverage/**"],
   },
   {
     files: ["**/*.test.js"],
