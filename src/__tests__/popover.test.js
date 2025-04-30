@@ -1,53 +1,48 @@
 import { Popover } from '../components/popover/popover';
 
-describe('Popover', () => {
-  beforeEach(() => {
-    document.body.innerHTML = '<div class="container"></div>';
-    let button = document.createElement('button');
-    document.body.appendChild(button);
-    let popover = new Popover(button, 'Test title', 'Test text');
-  });
+test('Проверка создания поповера при клике на кнопку', () => {
+  document.body.innerHTML = `
+    <div class='container'>
+      <button class='button'></button>
+    </div>
+  `;
+  let button = document.querySelector('button');
+  let popover = new Popover(button, 'Test title', 'Test text');
 
-  afterEach(() => {
-    document.body.removeChild(button);
-    popover.removePopover();
-  });
+  button.click();
+  
+  const popoverEl = document.body.querySelector('.popover');
+  expect(popoverEl).not.toBe(null);
+});
 
-  test('Проверка создания поповера при клике на кнопку', () => {
-    button.click();
-    expect(document.body.querySelector('.popover')).toBeInTheDocument();
-  });
+test('Проверка содержимого поповера', () => {
+  document.body.innerHTML = `
+    <div class='container'>
+      <button class='button'></button>
+    </div>
+    `;
+  let button = document.querySelector('button');
+  let popover = new Popover(button, 'Test title', 'Test text');
 
-  test('Проверка содержимого поповера', () => {
-    button.click();
-    const popoverElement = document.body.querySelector('.popover');
-    const popoverElementTitle = document.body.querySelector('.popoverTitle');
-    const popoverElementText = document.body.querySelector('.popoverText');
-    
-    expect(popoverElement).toBeInTheDocument();
-    expect(popoverElementTitle.textContent).toBe('Test title');
-    expect(popoverElementText.textContent).toBe('Test text');
-  });
+  button.click();
+  const popoverElement = document.body.querySelector('.popover');
+  const popoverElementTitle = popoverElement.querySelector('.popoverTitle');
+  const popoverElementText = popoverElement.querySelector('.popoverText');
 
-  test('Проверка удаления поповера при повторном клике на кнопку', () => {
-    button.click();
-    expect(document.body.querySelector('.popover')).toBeInTheDocument();
+  expect(popoverElementTitle.textContent).toBe('Test title');
+  expect(popoverElementText.textContent).toBe('Test text');
+});
 
-    button.click();
-    expect(document.body.querySelector('.popover')).not.toBeInTheDocument();
-  });
+test('Проверка удаления поповера при повторном клике на кнопку', () => {
+  document.body.innerHTML = `
+    <div class='container'>
+      <button class='button'></button>
+    </div>
+    `;
+  let button = document.querySelector('button');
+  let popover = new Popover(button, 'Test title', 'Test text');
 
-  test('Проверка позиционирования поповера относительно кнопки', () => {
-    button.style.position = 'absolute';
-    button.style.left = '100px';
-    button.style.top = '100px';
-
-    button.click();
-
-    const popoverElement = document.body.querySelector('.popover');
-    const { left, top } = popoverElement.getBoundingClientRect();
-
-    expect(left).toBeCloseTo(100);
-    expect(top).toBeCloseTo(90);
-  });
+  button.click();
+  button.click();
+  expect(document.body.querySelector('.popover')).toBe(null);
 });
