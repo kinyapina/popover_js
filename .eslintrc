@@ -21,12 +21,11 @@
     }
   },
   "rules": {
-    // ваши правила
   },
   "overrides": [
     {
       // Для тестов jest
-      "files": ["**/__tests__/**/*.js", "**/*.test.js"],
+      "files": ["src/__tests__/**/*.js", "src/__tests__/**/*.test.js"],
       "env": {
         "jest": true
       }
@@ -36,9 +35,7 @@
       "files": ["webpack.config.js", "jest.config.js"],
       "env": {
         "node": true
-      },
-      // __dirname — глобальная переменная nodejs, можно явно разрешить:
-      //"globals": { "__dirname" : false } 
+      }
     }
   ]
 }

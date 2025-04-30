@@ -13,6 +13,6 @@ export class Button {
     btn.textContent = btnText;
     this.parentEl.append(btn);
 
-    const popover = new Popover(btn, 'Popover title', "Add here's some amazing content. It's very engaging. Right?");
+    new Popover(btn, 'Popover title', "Add here's some amazing content. It's very engaging. Right?");
   };
 }
