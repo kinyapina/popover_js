@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    // ваши правила
+  },
+  "overrides": [
+    {
+      // Для тестов jest
+      "files": ["**/__tests__/**/*.js", "**/*.test.js"],
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      // Для конфигов nodejs
+      "files": ["webpack.config.js", "jest.config.js"],
+      "env": {
+        "node": true
+      },
+      // __dirname — глобальная переменная nodejs, можно явно разрешить:
+      //"globals": { "__dirname" : false } 
+    }
+  ]
+}
