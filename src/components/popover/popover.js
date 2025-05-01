@@ -24,7 +24,7 @@ export class Popover {
 
   showPopover() {
     this.createPopover();
-    document.body.appendChild(this.popover); 
+    document.body.append(this.popover); 
 
     const { left, top, width } = this.button.getBoundingClientRect();
     const { height: popoverHeight, width: popoverWidth } = this.popover.getBoundingClientRect();
