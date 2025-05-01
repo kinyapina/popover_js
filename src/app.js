@@ -1,8 +1,7 @@
-import './style.css';
-import { Button } from './components/btnWidget/btnWidget';
+import "./style.css";
+import { Button } from "./components/btnWidget/btnWidget";
 
-const container = document.querySelector('.container');
+const container = document.querySelector(".container");
 const newBtn = new Button(container);
 
-newBtn.createBtn('Click to toggle popover');
-
+newBtn.createBtn("Click to toggle popover");
